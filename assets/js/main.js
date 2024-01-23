@@ -8,7 +8,7 @@ const posts = [
             "image": "https://unsplash.it/300/300?image=15"
         },
         "likes": 80,
-        "created": "2021-06-25"
+        "created": "06-25-2021" 
     },
     {
         "id": 2,
@@ -19,7 +19,7 @@ const posts = [
             "image": "https://unsplash.it/300/300?image=10"
         },
         "likes": 120,
-        "created": "2021-09-03"
+        "created": "03-09-2021"
     },
     {
         "id": 3,
@@ -30,7 +30,7 @@ const posts = [
             "image": "https://unsplash.it/300/300?image=20"
         },
         "likes": 78,
-        "created": "2021-05-15"
+        "created": "05-15-2021"
     },
     {
         "id": 4,
@@ -41,7 +41,7 @@ const posts = [
             "image": null
         },
         "likes": 56,
-        "created": "2021-04-03"
+        "created": "04-03-2021"
     },
     {
         "id": 5,
@@ -52,15 +52,15 @@ const posts = [
             "image": "https://unsplash.it/300/300?image=29"
         },
         "likes": 95,
-        "created": "2021-03-05"
+        "created": "05-03-2021"
     }
 ];
 
-//Costante per selezionare la classe staff
+// Costante per selezionare la classe staff
 const cardPost = document.querySelector('.post');
 cardPost.innerHTML = '';
 
-//Ciclo per la creazione di un post
+// Ciclo per la creazione di un post
 posts.forEach((post) => {
     cardPost.innerHTML += `<div class="post">
     <div class="post__header">
@@ -98,5 +98,38 @@ posts.forEach((post) => {
 
 // Creo un array per vedere i miei like
 const myLike = []
-//Creo un array per vedere i post dove sono stati inseriti i like
+// Creo un array per vedere i post dove sono stati inseriti i like
 const likedPost = []
+
+// Costante per selezionare la classe likes nell'html
+const like = document.querySelectorAll('.likes');
+//Ciclo per far funzionare il bottone del like
+like.forEach((button) => {
+    const myBlock = button.querySelector('.like-button');
+	myBlock.addEventListener('click', function(){
+	myBlock.classList.add('like-button--liked');
+    let id = myBlock.getAttribute('data-postid');
+    myLike.push(id);
+    button.querySelector('.js-likes-counter').innerHTML = (parseInt(button.querySelector('.js-likes-counter').innerHTML) + 1);
+    console.log(button.querySelector('.js-likes-counter').innerHTML);
+    console.log(myLike);
+    console.log(likedPost);
+    })
+})
+
+//Funzione per trasformare la data americana in quella italiana
+function postTime(data) {
+    const dataPost = new Date(data);
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const dataFormatted = dataPost.toLocaleDateString('it-IT', options);
+
+    return `${dataFormatted}`;
+}
+
+//Funzione per generare l'immagine nulla
+function imageNull(image){
+    if(image === null){
+        image = 'https://cdn.vectorstock.com/i/preview-1x/26/39/profile-placeholder-image-gray-silhouette-vector-22122639.jpg'
+    }
+    return image
+}

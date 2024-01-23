@@ -117,16 +117,16 @@ like.forEach((button) => {
     })
 })
 
-//Funzione per trasformare la data americana in quella italiana
+// Funzione per trasformare la data americana in quella italiana
 function postTime(data) {
     const dataPost = new Date(data);
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    const dataFormatted = dataPost.toLocaleDateString('it-IT', options);
+    const dataItaliana = dataPost.toLocaleDateString('it-IT', options);
 
-    return `${dataFormatted}`;
+    return `${dataItaliana}`;
 }
 
-//Funzione per generare l'immagine nulla
+// Funzione per generare l'immagine nulla di Luca
 function imageNull(image){
     if(image === null){
         image = 'https://cdn.vectorstock.com/i/preview-1x/26/39/profile-placeholder-image-gray-silhouette-vector-22122639.jpg'

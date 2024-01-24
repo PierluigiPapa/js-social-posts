@@ -57,12 +57,12 @@ const posts = [
 ];
 
 // Costante per selezionare la classe staff
-const cardPost = document.querySelector('.post');
-cardPost.innerHTML = '';
+const containerHtml = document.getElementById('container');
+containerHtml.innerHTML = '';
 
 // Ciclo per la creazione di un post
 posts.forEach((post) => {
-    cardPost.innerHTML += `<div class="post">
+    containerHtml.innerHTML += `<div class="post">
     <div class="post__header">
         <div class="post-meta">                    
             <div class="post-meta__icon">
@@ -120,7 +120,7 @@ like.forEach((button) => {
 // Funzione per trasformare la data americana in quella italiana
 function postTime(data) {
     const dataPost = new Date(data);
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
     const dataItaliana = dataPost.toLocaleDateString('it-IT', options);
 
     return `${dataItaliana}`;
